@@ -1,0 +1,13 @@
+{
+  "name": "devtoolsbot",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/pmh-only/devtoolsbot.git",
+  "author": "Park Min Hyeok <pmhstudio.pmh@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.5.3",
+    "jsonwebtoken": "^8.5.1",
+    "ping": "^0.4.1"
+  }
+}
