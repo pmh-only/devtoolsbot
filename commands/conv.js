@@ -17,3 +17,45 @@ module.exports = (_, interaction) => {
     ]
   }
 }
+
+module.exports._ = 'conv'
+module.exports.meta = {
+  data: {
+    type: 1,
+    name: 'conv',
+    description: '입력받은 수의 진법을 변환합니다',
+    options: [
+      {
+        type: 3,
+        name: 'from',
+        description: '~에서',
+        required: true,
+        choices: [
+          { name: '2진수', value: 'bin' },
+          { name: '8진수', value: 'oct' },
+          { name: '10진수', value: 'dec' },
+          { name: '16진수', value: 'hex' }
+        ]
+      },
+      {
+        type: 3,
+        name: 'to',
+        description: '~로 변환',
+        required: true,
+        choices: [
+          { name: '2진수', value: 'bin' },
+          { name: '8진수', value: 'oct' },
+          { name: '10진수', value: 'dec' },
+          { name: '16진수(소문자)', value: 'hex' },
+          { name: '16진수(대문자)', value: 'hexC' }
+        ]
+      },
+      {
+        type: 3,
+        name: 'value',
+        description: '값을 입력하세요',
+        required: true
+      }
+    ]
+  }
+}

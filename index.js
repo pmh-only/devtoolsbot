@@ -3,18 +3,24 @@ const { readdirSync } = require('fs')
 const { Client } = require('discord.js')
 const client = new Client()
 
-const commandsConf = require('./commands/commands.json')
-
 client.on('ready', () => {
-  const cmdFiles = readdirSync(path.join(__dirname, 'commands')).filter((file) => file.endsWith('.js')).map((cmd) => ({ name: cmd.replace('.js', ''), fn: require(`./commands/${cmd.replace('.js', '')}`) }))
-  commandsConf.forEach((data) => client.api.applications(client.user.id).guilds('541782241131495434').commands.post(data))
+  const cmdFiles = readdirSync(path.join(__dirname, 'commands')).filter((file) => file.endsWith('.js'))
+  const commands = cmdFiles.map((cmd) => require(`./commands/${cmd.replace('.js', '')}`))
+
+  for (const cmd of commands) {
+    client.api
+      .applications(client.user.id)
+      .guilds('541782241131495434')
+      .commands.post(cmd.meta)
+  }
+
   client.ws.on('INTERACTION_CREATE', async (interaction) => {
-    const cmd = cmdFiles.find((cmd) => cmd.name === interaction.data.name)
+    const cmd = commands.find((cmd) => cmd._ === interaction.data.name)
     if (!cmd) return
 
     client.api.interactions(interaction.id, interaction.token).callback.post({ data: {
       type: 4,
-      data: await cmd.fn(client, interaction)
+      data: await cmd(client, interaction)
     }})
   })
 })

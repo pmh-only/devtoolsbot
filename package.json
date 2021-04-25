@@ -8,6 +8,6 @@
   "dependencies": {
     "discord.js": "^12.5.3",
     "jsonwebtoken": "^8.5.1",
-    "ping": "^0.4.1"
+    "network-scanner-js": "^1.1.5"
   }
 }

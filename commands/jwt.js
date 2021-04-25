@@ -52,3 +52,45 @@ module.exports = (_, interaction) => {
     }
   }
 }
+
+module.exports._ = 'jwt'
+module.exports.meta =   {
+  data: {
+    name: 'jwt',
+    description: '제이슨-웹-토큰(JWT)을 분석하고 검증합니다',
+    options: [
+      {
+        type: 1,
+        name: 'query',
+        description: '입력받은 JWT의 헤더, 페이로드, 서명을 분석합니다',
+        options: [
+          {
+            type: 3,
+            name: 'token',
+            description: 'JWT 문자열',
+            required: true
+          }
+        ]
+      },
+      {
+        type: 1,
+        name: 'verify',
+        description: '입력받은 JWT와 시크릿을 비교해 올바른 서명인지 검증합니다',
+        options: [
+          {
+            type: 3,
+            name: 'token',
+            description: 'JWT 문자열',
+            required: true
+          },
+          {
+            type: 3,
+            name: 'secret',
+            description: '시크릿',
+            required: true
+          }
+        ]
+      }
+    ]
+  }
+}
